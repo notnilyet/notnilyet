@@ -1,0 +1,497 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local nilo = Instance.new("ScreenGui")
+local CommandBox = Instance.new("TextBox")
+local MainFrame = Instance.new("ScrollingFrame")
+local copyme = Instance.new("TextButton")
+local description = Instance.new("TextLabel")
+local ButtonGradHolder = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
+local UICorner = Instance.new("UICorner")
+local UIListLayout = Instance.new("UIListLayout")
+local NotificationTemplate = Instance.new("Frame")
+local Plate = Instance.new("TextLabel")
+local UICorner_2 = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local UIGradient_2 = Instance.new("UIGradient")
+local GradientHolder = Instance.new("Frame")
+local UIGradient_3 = Instance.new("UIGradient")
+
+--Properties:
+
+nilo.Name = "nil'o"
+nilo.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+CommandBox.Name = "CommandBox"
+CommandBox.Parent = nilo
+CommandBox.BackgroundColor3 = Color3.fromRGB(102, 45, 113)
+CommandBox.BorderColor3 = Color3.fromRGB(53, 53, 53)
+CommandBox.BorderSizePixel = 0
+CommandBox.Position = UDim2.new(1, -160, 0.703086495, -9)
+CommandBox.Size = UDim2.new(0, 162, 0, 19)
+CommandBox.ClearTextOnFocus = false
+CommandBox.Font = Enum.Font.SourceSans
+CommandBox.PlaceholderText = "..."
+CommandBox.Text = ""
+CommandBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+CommandBox.TextSize = 14.000
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = nilo
+MainFrame.Active = true
+MainFrame.BackgroundColor3 = Color3.fromRGB(102, 45, 113)
+MainFrame.BackgroundTransparency = 1.000
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(1, -160, 0.734805942, -9)
+MainFrame.Size = UDim2.new(0, 160, 0, 176)
+MainFrame.ZIndex = 2
+MainFrame.CanvasSize = UDim2.new(0, 0, 5000, 0)
+MainFrame.ScrollBarThickness = 5
+MainFrame.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Left
+
+copyme.Name = "copyme"
+copyme.Parent = MainFrame
+copyme.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+copyme.BackgroundTransparency = 1.000
+copyme.BorderSizePixel = 0
+copyme.Position = UDim2.new(-3.17499995, 0, -1.6316396, 0)
+copyme.Size = UDim2.new(0, 160, 0, 14)
+copyme.Visible = false
+copyme.ZIndex = 2
+copyme.Font = Enum.Font.SourceSans
+copyme.TextColor3 = Color3.fromRGB(255, 255, 255)
+copyme.TextSize = 14.000
+copyme.TextWrapped = true
+
+description.Name = "description"
+description.Parent = copyme
+description.BackgroundColor3 = Color3.fromRGB(149, 10, 162)
+description.BackgroundTransparency = 1.000
+description.BorderSizePixel = 0
+description.Position = UDim2.new(0, 0, 0.992061079, 0)
+description.Size = UDim2.new(0, 162, 0, 21)
+description.ZIndex = 5
+description.Font = Enum.Font.SourceSans
+description.TextColor3 = Color3.fromRGB(255, 255, 255)
+description.TextSize = 14.000
+description.TextTransparency = 1.000
+description.TextWrapped = true
+
+ButtonGradHolder.Name = "ButtonGradHolder"
+ButtonGradHolder.Parent = copyme
+ButtonGradHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ButtonGradHolder.BackgroundTransparency = 1.000
+ButtonGradHolder.BorderColor3 = Color3.fromRGB(27, 42, 53)
+ButtonGradHolder.BorderSizePixel = 0
+ButtonGradHolder.Position = UDim2.new(0, 5, 0.991999984, 0)
+ButtonGradHolder.Size = UDim2.new(0, 162, 0, 21)
+ButtonGradHolder.ZIndex = 4
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(197, 66, 110)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(129, 57, 149)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(197, 66, 110))}
+UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.50), NumberSequenceKeypoint.new(1.00, 0.50)}
+UIGradient.Parent = ButtonGradHolder
+
+UICorner.CornerRadius = UDim.new(0, 5)
+UICorner.Parent = ButtonGradHolder
+
+UIListLayout.Parent = MainFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 10)
+
+NotificationTemplate.Name = "NotificationTemplate"
+NotificationTemplate.Parent = nilo
+NotificationTemplate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NotificationTemplate.BorderSizePixel = 0
+NotificationTemplate.Position = UDim2.new(0.819999993, -88, 1.22000003, -104)
+NotificationTemplate.Selectable = true
+NotificationTemplate.Size = UDim2.new(0, 176, 0, 104)
+NotificationTemplate.Visible = false
+
+Plate.Name = "Plate"
+Plate.Parent = NotificationTemplate
+Plate.BackgroundColor3 = Color3.fromRGB(102, 45, 113)
+Plate.BorderColor3 = Color3.fromRGB(52, 52, 52)
+Plate.BorderSizePixel = 0
+Plate.Position = UDim2.new(0, 0, -0.159673542, 0)
+Plate.Size = UDim2.new(0, 176, 0, 18)
+Plate.Font = Enum.Font.Ubuntu
+Plate.TextColor3 = Color3.fromRGB(157, 68, 175)
+Plate.TextSize = 14.000
+
+UICorner_2.CornerRadius = UDim.new(0, 2)
+UICorner_2.Parent = Plate
+
+TextLabel.Parent = NotificationTemplate
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0, 0, 0.02020205, 0)
+TextLabel.Size = UDim2.new(0, 176, 0, 101)
+TextLabel.Font = Enum.Font.Ubuntu
+TextLabel.TextColor3 = Color3.fromRGB(217, 72, 123)
+TextLabel.TextSize = 14.000
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(102, 45, 113)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(197, 66, 110))}
+UIGradient_2.Rotation = 90
+UIGradient_2.Parent = NotificationTemplate
+
+GradientHolder.Name = "GradientHolder"
+GradientHolder.Parent = nilo
+GradientHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GradientHolder.BorderSizePixel = 0
+GradientHolder.Position = UDim2.new(1, -160, 0.732340455, -9)
+GradientHolder.Size = UDim2.new(0, 160, 0, 176)
+
+UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(102, 45, 113)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(197, 66, 110))}
+UIGradient_3.Rotation = 90
+UIGradient_3.Parent = GradientHolder
+
+-- Scripts:
+
+local function TEGYMG_fake_script() -- CommandBox.CommandBox 
+	local script = Instance.new('LocalScript', CommandBox)
+
+	local globalfunction = {
+		createnotif = function(plate, text, duration)
+			local tweenservice = game:GetService("TweenService")
+			local template = script.Parent.Parent.NotificationTemplate
+			local info = TweenInfo.new(1,Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
+			local oldpos = UDim2.new(0.82, -88, 1.22, -104)
+			local newpos = UDim2.new(0.82, -88, 1, -104)
+	
+			template.Plate.Text = plate
+			template.TextLabel.Text = text
+	
+			template.Visible = true
+			local up = tweenservice:Create(template, info, {Position = newpos})
+			up:Play()
+			up.Completed:Wait()
+			wait(tonumber(duration))
+			local down = tweenservice:Create(template, info, {Position = oldpos})
+			down:Play()
+			down.Completed:Wait()
+			template.Visible = false
+		end,
+		predict = function(Table, input)
+			local results = {}
+	
+			for i,v in pairs(Table) do
+				if i:sub(1,#input):lower() == input:lower() then 
+					table.insert(results,i) 
+				end
+			end
+	
+			if #results >= 1 then
+				return results
+			else
+				return {}
+			end
+		end
+	}
+	
+	local commands = {
+		["print"] = {
+			function(args)
+				print(args)
+			end,
+			desc = "Print args",
+		},
+		["nolag"] = {
+			function()
+				for i, v in pairs(workspace:GetDescendants()) do
+					if v:IsA("Decal") then
+						v:Destroy()
+					end
+				end
+			end,
+			desc = "Enables no lag mode"
+		},
+		["blockhead"] = {
+			function()
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				char:WaitForChild("Head").Mesh:Destroy()
+			end,
+			desc = "Turns your head into a block"
+		},
+		["blockhats"] = {
+			function()
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				for i, v in pairs(char:GetDescendants()) do
+					if v:IsA("Accessory") then
+						v.Handle:FindFirstChildOfClass("SpecialMesh"):Destroy()
+					end
+				end
+			end,
+			desc = "Turns your hats into blocks"
+		},
+		["walkspeed"] = {
+			function(args)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local human = char:FindFirstChild("Humanoid")
+	
+				human.WalkSpeed = args
+			end,
+			desc = "Changes your walkspeed"
+		},
+		["hipheight"] = {
+			function(args)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local human = char:FindFirstChild("Humanoid")
+	
+				human.HipHeight = args			
+			end,
+			desc = "Changes your hipheight"
+		},
+		["fly"] = {
+			function()
+				game:GetService("Players").LocalPlayer:Kick("skill issue")
+			end,
+	
+			desc = "Unuseable due to skill issue of the creator"
+		},
+		["swim"] = {
+			function(args)
+				local human = game.Players.LocalPlayer.Character.Humanoid
+				while true do
+					wait()
+					human:ChangeState(Enum.HumanoidStateType.Swimming)
+				end
+			end,
+			desc = "Makes you able to swim in air"
+		},
+		["blocktools"] = {
+			function()
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local tool = char:FindFirstChildWhichIsA("Tool")
+				for i, v in pairs(tool:GetDescendants()) do
+					if v:IsA("SpecialMesh") then
+						v:Destroy()
+					end
+				end
+			end,
+			desc = "Hold the tool to make it blocky"
+		},
+		["gripup"] = {
+			function(args, args1, args2)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local tool = char:FindFirstChildWhichIsA("Tool")
+	
+				tool.GripUp = Vector3.new(args, args1, args2)
+			end,
+			desc = "Changes tool GripUp value"
+		},
+		["gripforward"] = {
+			function(args, args1, args2)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local tool = char:FindFirstChildWhichIsA("Tool")
+	
+				tool.GripForward = Vector3.new(args, args1, args2)
+			end,
+			desc = "Changes tool GripForward value"
+		},
+		["grippos"] = {
+			function(args, args1, args2)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local tool = char:FindFirstChildWhichIsA("Tool")
+	
+				tool.GripPos = Vector3.new(args, args1, args2)
+			end,
+			desc = "Changes tool GripUp value"
+		},
+		["gripright"] = {
+			function(args, args1, args2)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local tool = char:FindFirstChildWhichIsA("Tool")
+	
+				tool.GripRight = Vector3.new(args, args1, args2)
+			end,
+			desc = "Changes tool GripUp value"
+		},
+		["drop"] = {
+			function()
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local tool = char:FindFirstChildWhichIsA("Tool")
+				local grip = char["Right Arm"]:FindFirstChild("RightGrip")
+	
+				if grip then
+					grip:Destroy()
+					tool.Parent = workspace
+				end
+			end,
+			desc = "Drops your tool"
+		},
+		["createnotify"] = {
+			function(plate, text, duration)
+				globalfunction.createnotif(plate, text, duration)
+			end,
+			desc = "Creates a notification"
+		},
+		["placeid"] = {
+			function()
+				globalfunction.createnotif("Place Id", game.PlaceId, 3)
+			end,
+			desc = "Returns place id"
+		},
+		["jobid"] = {
+			function()
+				globalfunction.createnotif("Job Id", game.JobId, 3)
+			end,
+			desc = "Returns job id"
+		},
+		["placevers"] = {
+			function()
+				globalfunction.createnotif("Place version", game.PlaceVersion, 3)
+			end,
+			desc = "Returns place version"
+		},
+		["tp"] = {
+			function(plr)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local tpto = workspace:FindFirstChild(plr)
+	
+				char.PrimaryPart.CFrame = tpto.PrimaryPart.CFrame
+			end,
+			desc = "Teleports your character to a player"
+		},
+		["noclip"] = {
+			function()
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local runservice = game:GetService("RunService")
+	
+				conn = runservice.Stepped:Connect(function()
+					for i, v in pairs(char:GetDescendants()) do
+						if v:IsA("BasePart") then
+							v.CanCollide = false
+						end
+					end
+				end)
+			end,
+			desc = "Makes your character able to clip through objects"
+		},
+		["unnoclip"] = {
+			function()
+				conn:Disconnect()
+			end,
+			desc = "Disables noclip"
+		},
+		["sit"] = {
+			function()
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local human = char:FindFirstChildWhichIsA("Humanoid")
+				human.Sit = true
+			end,
+			desc = "Makes you sit"
+		},
+		["forcesit"] = {
+			function()
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local human = char:FindFirstChildWhichIsA("Humanoid")
+				local runservice = game:GetService("RunService")
+				sitconn = runservice.RenderStepped:Connect(function()
+					human.Sit = true
+				end)	
+			end,
+			desc = "Forces you to sit"
+		},
+		["unforcesit"] = {
+			function()
+				sitconn:Disconnect()
+			end,
+			desc = "Unforcesits you"
+		},
+		["source"] = {
+			function()
+				globalfunction.createnotif("nil'o source", "https://github.com/notnilyet/notnilyet/blob/main/nil%20cmds", 3)
+				wait(3)
+				game:GetService("Players").LocalPlayer:Kick()
+			end,
+			desc = "Nil'o source code"
+		}
+	}
+	
+	local box = script.Parent
+	local mainframe = box.Parent.MainFrame
+	local copyme = mainframe.copyme
+	local uis = game:GetService("UserInputService")
+	local twserv = game:GetService("TweenService")
+	local info = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
+	
+	uis.InputBegan:Connect(function(key, chat)
+		if not chat and key.KeyCode == Enum.KeyCode.Semicolon then
+			box:CaptureFocus()
+		end
+	end)
+	
+	box.FocusLost:Connect(function(enter)
+		if enter then
+			local input = box.Text
+			local args = string.split(input, " ")
+			print(args)
+			local command = commands[args[1]][1]
+	
+			if command then
+				command(unpack(args, 2))
+			end
+		end
+	end)
+	
+	
+	box:GetPropertyChangedSignal("Text"):Connect(function()
+		local availableCMDs = globalfunction.predict(commands, box.Text)
+		for i, v in pairs(mainframe:GetChildren()) do
+			if v:IsA("TextButton") then
+				v.Visible = false
+				for i1, v1 in pairs(availableCMDs) do
+					if v.Text == v1 then
+						v.Visible = true
+					end
+				end
+			end
+		end
+	end)
+	
+	for i, v in pairs(commands) do
+		local clone = copyme:clone()
+		clone.Name = i
+		clone.Text = i
+		clone.Visible = true
+		clone.Parent = mainframe
+		clone.description.Text = v.desc
+		clone.MouseButton1Click:Connect(function()
+			box.Text = clone.Text
+		end)
+		clone.MouseEnter:Connect(function()
+			local m = twserv:Create(clone.description, info, {TextTransparency = 0})
+			local t = twserv:Create(clone.ButtonGradHolder, info, {BackgroundTransparency = 0})
+			m:Play()
+			t:Play()
+			m.Completed:Wait()
+			t.Completed:Wait()
+		end)
+		clone.MouseLeave:Connect(function()
+			local m = twserv:Create(clone.description, info, {TextTransparency = 1})
+			local t = twserv:Create(clone.ButtonGradHolder, info, {BackgroundTransparency = 1})
+			m:Play()
+			t:Play()
+			m.Completed:Wait()
+			t.Completed:Wait()
+		end)
+	end
+end
+coroutine.wrap(TEGYMG_fake_script)()
