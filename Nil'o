@@ -535,7 +535,7 @@ local function SYRUP_fake_script() -- CommandBox.Main
 		},
 		["close"] = {
 			function()
-				--game:Shutdown()
+				game:Shutdown()
 			end,
 			desc = "Closes your client"
 		},
