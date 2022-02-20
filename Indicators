@@ -1,0 +1,119 @@
+
+
+local Indicators = Instance.new("ScreenGui")
+local FPS = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local PING = Instance.new("TextLabel")
+local UICorner_2 = Instance.new("UICorner")
+local ImageLabel = Instance.new("ImageLabel")
+local COUNTRY = Instance.new("TextLabel")
+local UICorner_3 = Instance.new("UICorner")
+local ROBLOXVERSION = Instance.new("TextLabel")
+local UICorner_4 = Instance.new("UICorner")
+
+
+Indicators.Name = "Indicators"
+Indicators.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Indicators.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+FPS.Name = "FPS"
+FPS.Parent = Indicators
+FPS.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+FPS.BackgroundTransparency = 0.500
+FPS.Position = UDim2.new(0.0920000002, 0, 0.010999999, 0)
+FPS.Size = UDim2.new(0, 69, 0, 32)
+FPS.Font = Enum.Font.GothamSemibold
+FPS.Text = "... FPS"
+FPS.TextColor3 = Color3.fromRGB(255, 255, 255)
+FPS.TextSize = 15.000
+FPS.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+FPS.TextTransparency = 0.200
+
+UICorner.Parent = FPS
+
+PING.Name = "PING"
+PING.Parent = Indicators
+PING.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+PING.BackgroundTransparency = 0.500
+PING.Position = UDim2.new(0.165905118, 0, 0.010999999, 0)
+PING.Size = UDim2.new(0, 69, 0, 32)
+PING.Font = Enum.Font.GothamSemibold
+PING.Text = "..."
+PING.TextColor3 = Color3.fromRGB(255, 255, 255)
+PING.TextSize = 15.000
+PING.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+PING.TextTransparency = 0.200
+
+UICorner_2.Parent = PING
+
+ImageLabel.Parent = PING
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.594202876, 0, 0.0625, 0)
+ImageLabel.Size = UDim2.new(0, 28, 0, 27)
+ImageLabel.Image = "rbxassetid://3926307971"
+ImageLabel.ImageRectOffset = Vector2.new(4, 284)
+ImageLabel.ImageRectSize = Vector2.new(36, 36)
+ImageLabel.ImageTransparency = 0.200
+ImageLabel.ScaleType = Enum.ScaleType.Slice
+
+COUNTRY.Name = "COUNTRY"
+COUNTRY.Parent = Indicators
+COUNTRY.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+COUNTRY.BackgroundTransparency = 0.500
+COUNTRY.Position = UDim2.new(0.240722626, 0, 0.010999999, 0)
+COUNTRY.Size = UDim2.new(0, 69, 0, 32)
+COUNTRY.Font = Enum.Font.GothamSemibold
+COUNTRY.Text = "Server:"
+COUNTRY.TextColor3 = Color3.fromRGB(255, 255, 255)
+COUNTRY.TextSize = 13.000
+COUNTRY.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+COUNTRY.TextTransparency = 0.200
+COUNTRY.TextWrapped = true
+
+UICorner_3.Parent = COUNTRY
+
+ROBLOXVERSION.Name = "ROBLOXVERSION"
+ROBLOXVERSION.Parent = Indicators
+ROBLOXVERSION.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ROBLOXVERSION.BackgroundTransparency = 0.500
+ROBLOXVERSION.Position = UDim2.new(0.314627737, 0, 0.010999999, 0)
+ROBLOXVERSION.Size = UDim2.new(0, 69, 0, 32)
+ROBLOXVERSION.Font = Enum.Font.GothamSemibold
+ROBLOXVERSION.Text = "Version:"
+ROBLOXVERSION.TextColor3 = Color3.fromRGB(255, 255, 255)
+ROBLOXVERSION.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+ROBLOXVERSION.TextTransparency = 0.200
+ROBLOXVERSION.TextWrapped = true
+
+UICorner_4.Parent = ROBLOXVERSION
+
+
+local function DICC_fake_script() 
+
+	local runservice = game:GetService("RunService")
+	local players = game:GetService("Players")
+	local player = players.LocalPlayer
+	local ui = script.Parent
+	local fpscounter = ui.FPS
+	local pingcounter = ui.PING
+	local server = ui.COUNTRY
+	local versionlabel = ui.ROBLOXVERSION
+	local localserv = game:GetService("LocalizationService")
+	
+	local country = localserv:GetCountryRegionForPlayerAsync(player)
+	server.Text = "Server:"..country
+	
+	local vers = version()
+	versionlabel.Text = "Version:"..vers
+	
+	runservice.RenderStepped:Connect(function()
+		local fps = math.floor(workspace:GetRealPhysicsFPS())
+		script.Parent.Text = fps.." FPS"
+		
+		local ping = math.floor(player:GetNetworkPing())	
+		pingcounter.Text = ping
+	end)
+end
+coroutine.wrap(SLIO_fake_script)()
