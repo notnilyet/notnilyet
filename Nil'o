@@ -1,7 +1,13 @@
--- Gui to Lua
--- Version: 3.2
+loaded = false
+debugging = false
 
--- Instances:
+if loaded and not debugging then
+	error("nil'o is already running", 0)
+	return
+end
+
+pcall(function() getfenv().loaded = true end)
+
 
 local nilo = Instance.new("ScreenGui")
 local CommandBox = Instance.new("TextBox")
@@ -17,18 +23,18 @@ local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
 local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 local UIListLayout = Instance.new("UIListLayout")
 local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
+local GradientHolder = Instance.new("Frame")
+local UIGradient_2 = Instance.new("UIGradient")
+local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
+local Sounds = Instance.new("Folder")
 local NotificationTemplate = Instance.new("Frame")
 local Plate = Instance.new("TextLabel")
 local UICorner_2 = Instance.new("UICorner")
-local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
-local TextLabel = Instance.new("TextLabel")
 local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
-local UIGradient_2 = Instance.new("UIGradient")
+local TextLabel = Instance.new("TextLabel")
 local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
-local GradientHolder = Instance.new("Frame")
 local UIGradient_3 = Instance.new("UIGradient")
 local UIAspectRatioConstraint_9 = Instance.new("UIAspectRatioConstraint")
-local Sounds = Instance.new("Folder")
 
 --Properties:
 
@@ -41,7 +47,7 @@ CommandBox.Parent = nilo
 CommandBox.BackgroundColor3 = Color3.fromRGB(102, 45, 113)
 CommandBox.BorderColor3 = Color3.fromRGB(53, 53, 53)
 CommandBox.BorderSizePixel = 0
-CommandBox.Position = UDim2.new(1, -160, 0.703086495, -9)
+CommandBox.Position = UDim2.new(0.883601785, 0, 0.744753182, 0)
 CommandBox.Size = UDim2.new(0, 162, 0, 19)
 CommandBox.ClearTextOnFocus = false
 CommandBox.Font = Enum.Font.SourceSans
@@ -59,7 +65,7 @@ MainFrame.Active = true
 MainFrame.BackgroundColor3 = Color3.fromRGB(102, 45, 113)
 MainFrame.BackgroundTransparency = 1.000
 MainFrame.BorderSizePixel = 0
-MainFrame.Position = UDim2.new(1, -160, 0.734805942, -9)
+MainFrame.Position = UDim2.new(0.883601785, 0, 0.769962192, 0)
 MainFrame.Size = UDim2.new(0, 160, 0, 176)
 MainFrame.ZIndex = 2
 MainFrame.CanvasSize = UDim2.new(0, 0, 5000, 0)
@@ -103,7 +109,7 @@ ButtonGradHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ButtonGradHolder.BackgroundTransparency = 1.000
 ButtonGradHolder.BorderColor3 = Color3.fromRGB(27, 42, 53)
 ButtonGradHolder.BorderSizePixel = 0
-ButtonGradHolder.Position = UDim2.new(0, 5, 0.991999984, 0)
+ButtonGradHolder.Position = UDim2.new(0.03125, 0, 0.991999984, 0)
 ButtonGradHolder.Size = UDim2.new(0, 162, 0, 21)
 ButtonGradHolder.ZIndex = 4
 
@@ -127,11 +133,28 @@ UIListLayout.Padding = UDim.new(0, 10)
 UIAspectRatioConstraint_5.Parent = MainFrame
 UIAspectRatioConstraint_5.AspectRatio = 0.909
 
+GradientHolder.Name = "GradientHolder"
+GradientHolder.Parent = nilo
+GradientHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GradientHolder.BorderSizePixel = 0
+GradientHolder.Position = UDim2.new(0.88286972, 0, 0.770100892, 0)
+GradientHolder.Size = UDim2.new(0, 160, 0, 176)
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(102, 45, 113)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(197, 66, 110))}
+UIGradient_2.Rotation = 90
+UIGradient_2.Parent = GradientHolder
+
+UIAspectRatioConstraint_6.Parent = GradientHolder
+UIAspectRatioConstraint_6.AspectRatio = 0.909
+
+Sounds.Name = "Sounds"
+Sounds.Parent = nilo
+
 NotificationTemplate.Name = "NotificationTemplate"
 NotificationTemplate.Parent = nilo
 NotificationTemplate.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 NotificationTemplate.BorderSizePixel = 0
-NotificationTemplate.Position = UDim2.new(0.819999993, -88, 1.22000003, -104)
+NotificationTemplate.Position = UDim2.new(0.754999995, 0, 1.20000005, 0)
 NotificationTemplate.Selectable = true
 NotificationTemplate.Size = UDim2.new(0, 176, 0, 104)
 NotificationTemplate.Visible = false
@@ -150,8 +173,8 @@ Plate.TextSize = 14.000
 UICorner_2.CornerRadius = UDim.new(0, 2)
 UICorner_2.Parent = Plate
 
-UIAspectRatioConstraint_6.Parent = Plate
-UIAspectRatioConstraint_6.AspectRatio = 9.778
+UIAspectRatioConstraint_7.Parent = Plate
+UIAspectRatioConstraint_7.AspectRatio = 9.778
 
 TextLabel.Parent = NotificationTemplate
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -162,48 +185,18 @@ TextLabel.Font = Enum.Font.Ubuntu
 TextLabel.TextColor3 = Color3.fromRGB(217, 72, 123)
 TextLabel.TextSize = 14.000
 
-UIAspectRatioConstraint_7.Parent = TextLabel
-UIAspectRatioConstraint_7.AspectRatio = 1.743
-
-UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(102, 45, 113)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(197, 66, 110))}
-UIGradient_2.Rotation = 90
-UIGradient_2.Parent = NotificationTemplate
-
-UIAspectRatioConstraint_8.Parent = NotificationTemplate
-UIAspectRatioConstraint_8.AspectRatio = 1.692
-
-GradientHolder.Name = "GradientHolder"
-GradientHolder.Parent = nilo
-GradientHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-GradientHolder.BorderSizePixel = 0
-GradientHolder.Position = UDim2.new(1, -160, 0.732340455, -9)
-GradientHolder.Size = UDim2.new(0, 160, 0, 176)
+UIAspectRatioConstraint_8.Parent = TextLabel
+UIAspectRatioConstraint_8.AspectRatio = 1.743
 
 UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(102, 45, 113)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(197, 66, 110))}
 UIGradient_3.Rotation = 90
-UIGradient_3.Parent = GradientHolder
+UIGradient_3.Parent = NotificationTemplate
 
-UIAspectRatioConstraint_9.Parent = GradientHolder
-UIAspectRatioConstraint_9.AspectRatio = 0.909
+UIAspectRatioConstraint_9.Parent = NotificationTemplate
+UIAspectRatioConstraint_9.AspectRatio = 1.692
 
-Sounds.Name = "Sounds"
-Sounds.Parent = nilo
 
--- Scripts:
-
-local function SYRUP_fake_script() -- CommandBox.Main 
-	local script = Instance.new('LocalScript', CommandBox)
-
-	loaded = false
-	debugging = false
-	
-	if loaded and not debugging then
-		error("nil'o is already running", 0)
-		return
-	end
-	
-	pcall(function() getfenv().loaded = true end)
-	
+local function SNACC_fake_script()
 	local ui = script.Parent.Parent
 	local box = script.Parent
 	local mainframe = ui.MainFrame
@@ -218,8 +211,8 @@ local function SYRUP_fake_script() -- CommandBox.Main
 			local tweenservice = game:GetService("TweenService")
 			local template = script.Parent.Parent.NotificationTemplate
 			local info = TweenInfo.new(1,Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
-			local oldpos = UDim2.new(0.82, -88, 1.22, -104)
-			local newpos = UDim2.new(0.82, -88, 1, -104)
+			local oldpos = UDim2.new(0.755, 0, 1.2, 0)
+			local newpos = UDim2.new(0.756, 0, 0.86, 0)
 	
 			template.Plate.Text = plate
 			template.TextLabel.Text = text
@@ -535,16 +528,16 @@ local function SYRUP_fake_script() -- CommandBox.Main
 		},
 		["close"] = {
 			function()
-				game:Shutdown()
+				--game:Shutdown()
 			end,
 			desc = "Closes your client"
 		},
 		["reset"] = {
 			function()
-			local player = game:GetService("Players").LocalPlayer
-			local char = player.Character or player.CharacterAdded:Wait()
-			local human = char:FindFirstChildWhichIsA("Humanoid")
-			human:TakeDamage(math.huge)
+				local player = game:GetService("Players").LocalPlayer
+				local char = player.Character or player.CharacterAdded:Wait()
+				local human = char:FindFirstChildWhichIsA("Humanoid")
+				human:TakeDamage(math.huge)
 			end,
 			desc = "Resets your character"
 		}
@@ -614,4 +607,4 @@ local function SYRUP_fake_script() -- CommandBox.Main
 		end)
 	end
 end
-coroutine.wrap(SYRUP_fake_script)()
+coroutine.wrap(SNACC_fake_script)()
