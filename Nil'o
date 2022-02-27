@@ -8,7 +8,6 @@ end
 
 pcall(function() getfenv().loaded = true end)
 
-
 local nilo = Instance.new("ScreenGui")
 local CommandBox = Instance.new("TextBox")
 local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
@@ -35,8 +34,20 @@ local TextLabel = Instance.new("TextLabel")
 local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
 local UIGradient_3 = Instance.new("UIGradient")
 local UIAspectRatioConstraint_9 = Instance.new("UIAspectRatioConstraint")
-
---Properties:
+local Highlight = Instance.new("Folder")
+local Front = Instance.new("SurfaceGui")
+local Frame = Instance.new("Frame")
+local Back = Instance.new("SurfaceGui")
+local Frame_2 = Instance.new("Frame")
+local Bottom = Instance.new("SurfaceGui")
+local Frame_3 = Instance.new("Frame")
+local Left = Instance.new("SurfaceGui")
+local Frame_4 = Instance.new("Frame")
+local Right = Instance.new("SurfaceGui")
+local Frame_5 = Instance.new("Frame")
+local Top = Instance.new("SurfaceGui")
+local Frame_6 = Instance.new("Frame")
+local Animations = Instance.new("Folder")
 
 nilo.Name = "nil'o"
 nilo.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -195,8 +206,87 @@ UIGradient_3.Parent = NotificationTemplate
 UIAspectRatioConstraint_9.Parent = NotificationTemplate
 UIAspectRatioConstraint_9.AspectRatio = 1.692
 
+Highlight.Name = "Highlight"
+Highlight.Parent = nilo
 
-local function SNACC_fake_script()
+Front.Name = "Front"
+Front.Parent = Highlight
+Front.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Front.AlwaysOnTop = true
+Front.LightInfluence = 1.000
+
+Frame.Parent = Front
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Size = UDim2.new(0, 999999999, 0, 999999999)
+Frame.ZIndex = 5
+
+Back.Name = "Back"
+Back.Parent = Highlight
+Back.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Back.AlwaysOnTop = true
+Back.Face = Enum.NormalId.Back
+Back.LightInfluence = 1.000
+
+Frame_2.Parent = Back
+Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_2.Size = UDim2.new(0, 999999999, 0, 999999999)
+Frame_2.ZIndex = 5
+
+Bottom.Name = "Bottom"
+Bottom.Parent = Highlight
+Bottom.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Bottom.AlwaysOnTop = true
+Bottom.Face = Enum.NormalId.Bottom
+Bottom.LightInfluence = 1.000
+
+Frame_3.Parent = Bottom
+Frame_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_3.Size = UDim2.new(0, 999999999, 0, 999999999)
+Frame_3.ZIndex = 5
+
+Left.Name = "Left"
+Left.Parent = Highlight
+Left.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Left.AlwaysOnTop = true
+Left.Face = Enum.NormalId.Left
+Left.LightInfluence = 1.000
+
+Frame_4.Parent = Left
+Frame_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_4.Size = UDim2.new(0, 999999999, 0, 999999999)
+Frame_4.ZIndex = 5
+
+Right.Name = "Right"
+Right.Parent = Highlight
+Right.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Right.AlwaysOnTop = true
+Right.Face = Enum.NormalId.Right
+Right.LightInfluence = 1.000
+
+Frame_5.Parent = Right
+Frame_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_5.Size = UDim2.new(0, 999999999, 0, 999999999)
+Frame_5.ZIndex = 5
+
+Top.Name = "Top"
+Top.Parent = Highlight
+Top.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Top.AlwaysOnTop = true
+Top.Face = Enum.NormalId.Top
+Top.LightInfluence = 1.000
+
+Frame_6.Parent = Top
+Frame_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_6.Size = UDim2.new(0, 999999999, 0, 999999999)
+Frame_6.ZIndex = 5
+
+Animations.Name = "Animations"
+Animations.Parent = nilo
+
+
+local function BDCT_fake_script()
+	local script = Instance.new('LocalScript', CommandBox)
+	
 	local ui = script.Parent.Parent
 	local box = script.Parent
 	local mainframe = ui.MainFrame
@@ -205,6 +295,13 @@ local function SNACC_fake_script()
 	local uis = game:GetService("UserInputService")
 	local twserv = game:GetService("TweenService")
 	local info = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
+	
+	local players = game:GetService("Players")
+	local player = players.LocalPlayer
+	local char = player.Character or player.CharacterAdded:Wait()
+	local human = char:WaitForChild("Humanoid")
+	local animator = human:FindFirstChildWhichIsA("Animator")
+	local rand = math.random()
 	
 	local globalfunction = {
 		createnotif = function(plate, text, duration)
@@ -303,16 +400,12 @@ local function SNACC_fake_script()
 		},
 		["blockhead"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				char:WaitForChild("Head").Mesh:Destroy()
 			end,
 			desc = "Turns your head into a block"
 		},
 		["blockhats"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				for i, v in pairs(char:GetDescendants()) do
 					if v:IsA("Accessory") then
 						v.Handle:FindFirstChildOfClass("SpecialMesh"):Destroy()
@@ -323,19 +416,12 @@ local function SNACC_fake_script()
 		},
 		["walkspeed"] = {
 			function(args)
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
-				local human = char:FindFirstChild("Humanoid")
-	
 				human.WalkSpeed = args
 			end,
 			desc = "Changes your walkspeed"
 		},
 		["hipheight"] = {
 			function(args)
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
-				local human = char:FindFirstChild("Humanoid")
 	
 				human.HipHeight = args			
 			end,
@@ -350,7 +436,6 @@ local function SNACC_fake_script()
 		},
 		["swim"] = {
 			function(args)
-				local human = game.Players.LocalPlayer.Character.Humanoid
 				while true do
 					wait()
 					human:ChangeState(Enum.HumanoidStateType.Swimming)
@@ -360,8 +445,6 @@ local function SNACC_fake_script()
 		},
 		["blocktools"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local tool = char:FindFirstChildWhichIsA("Tool")
 				for i, v in pairs(tool:GetDescendants()) do
 					if v:IsA("SpecialMesh") then
@@ -373,8 +456,6 @@ local function SNACC_fake_script()
 		},
 		["gripup"] = {
 			function(args, args1, args2)
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local tool = char:FindFirstChildWhichIsA("Tool")
 	
 				tool.GripUp = Vector3.new(args, args1, args2)
@@ -383,8 +464,6 @@ local function SNACC_fake_script()
 		},
 		["gripforward"] = {
 			function(args, args1, args2)
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local tool = char:FindFirstChildWhichIsA("Tool")
 	
 				tool.GripForward = Vector3.new(args, args1, args2)
@@ -393,8 +472,6 @@ local function SNACC_fake_script()
 		},
 		["grippos"] = {
 			function(args, args1, args2)
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local tool = char:FindFirstChildWhichIsA("Tool")
 	
 				tool.GripPos = Vector3.new(args, args1, args2)
@@ -403,8 +480,6 @@ local function SNACC_fake_script()
 		},
 		["gripright"] = {
 			function(args, args1, args2)
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local tool = char:FindFirstChildWhichIsA("Tool")
 	
 				tool.GripRight = Vector3.new(args, args1, args2)
@@ -413,8 +488,6 @@ local function SNACC_fake_script()
 		},
 		["drop"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local tool = char:FindFirstChildWhichIsA("Tool")
 				local grip = char["Right Arm"]:FindFirstChild("RightGrip")
 	
@@ -451,8 +524,6 @@ local function SNACC_fake_script()
 		},
 		["tp"] = {
 			function(plr)
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local tpto = workspace:FindFirstChild(plr)
 	
 				char.PrimaryPart.CFrame = tpto.PrimaryPart.CFrame
@@ -461,8 +532,6 @@ local function SNACC_fake_script()
 		},
 		["noclip"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
 				local runservice = game:GetService("RunService")
 	
 				conn = runservice.Stepped:Connect(function()
@@ -483,18 +552,12 @@ local function SNACC_fake_script()
 		},
 		["sit"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
-				local human = char:FindFirstChildWhichIsA("Humanoid")
 				human.Sit = true
 			end,
 			desc = "Makes you sit"
 		},
 		["forcesit"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
-				local human = char:FindFirstChildWhichIsA("Humanoid")
 				local runservice = game:GetService("RunService")
 				sitconn = runservice.RenderStepped:Connect(function()
 					human.Sit = true
@@ -534,15 +597,245 @@ local function SNACC_fake_script()
 		},
 		["reset"] = {
 			function()
-				local player = game:GetService("Players").LocalPlayer
-				local char = player.Character or player.CharacterAdded:Wait()
-				local human = char:FindFirstChildWhichIsA("Humanoid")
 				human:TakeDamage(math.huge)
 			end,
 			desc = "Resets your character"
+		},
+		["mvua"] = {
+			function(arg)
+				local player
+				if arg then
+					player = workspace:FindFirstChild(arg)
+				else
+					player = game:GetService("Players").LocalPlayer.Character
+				end
+				for i, v in pairs(workspace:GetDescendants()) do
+					if v:IsA("Part") and v.Anchored == false then
+						local mover = Instance.new("BodyPosition")
+						mover.Position = player.PrimaryPart.Position
+						mover.Parent = v
+					end
+				end
+				for i, v in pairs(player:GetDescendants()) do
+					if v:IsA("BodyPosition") then
+						v:Destroy()
+					end
+				end
+			end,
+			desc = "Moves unanchored parts"
+		},
+		["frua"] = {
+			function()
+				for i, v in pairs(workspace:GetDescendants()) do
+					if v:IsA("BodyPosition") then
+						v.Position = v.Parent.Position
+					end
+				end
+			end,
+			desc = "Freezes unanchored parts"
+		},
+		["dtua"] = {
+			function()
+				for i, v in pairs(workspace:GetDescendants()) do
+					if v:IsA("BodyPosition") then
+						v.P = math.huge
+						v.D = math.huge
+						v.Position = Vector3.new(math.huge, math.huge, math.huge)
+					end
+				end
+			end,
+			desc = "Destroys unanchored parts"
+		},
+		["hlua"] = {
+			function()
+				for i, v in pairs(workspace:GetDescendants()) do
+					if v:IsA("BasePart") and v.Anchored == false then
+						local clone = ui.Highlight:Clone()
+						clone.Parent = v
+						for _, gui in pairs(clone:GetChildren()) do
+							gui.Adornee = v
+						end
+					end
+				end
+			end,
+			desc = "Highlights unanchored parts"
+		},
+		["unhl"] = {
+			function()
+				for i, v in pairs(workspace:GetDescendants()) do
+					if v:IsA("Folder") and v.Name == "Highlight" then
+						v:Destroy()
+					end
+				end
+			end,
+			desc = "Unhighlights unanchored parts"
+		},
+		["checksound"] = {
+			function()
+				local h = game:GetService("SoundService").RespectFilteringEnabled
+				globalfunction.createnotif("RespectFilteringEnabled", tostring(h), 5)
+			end,
+			desc = "Notifies RespectFilteringEnabled value"
+		},
+		["spectateplr"] = {
+			function(arg)
+				local cam = workspace.CurrentCamera
+				cam.CameraSubject = workspace:FindFirstChild(arg).Humanoid
+			end,
+			desc = "Spectates arg"
+		},
+		["spectatepart"] = {
+			function(arg)
+				local cam = workspace.CurrentCamera
+				cam.CameraSubject = workspace:FindFirstChild(arg)
+			end,
+			desc = "Spectates a part"
+		},
+		["unspectate"] = {
+			function()
+				local cam = workspace.CurrentCamera
+				cam.CameraSubject = char.Humanoid
+			end,
+			desc = "Disables spectate"
+		},
+		["refresh"] = {
+			function()
+			
+			end,
+			desc = "lol"
+		},
+		["table.new"] = {
+			function(name, value, valuev)
+				local tabl = Instance.new("Folder")
+				tabl.Name = name
+				tabl.Parent = player
+				local val = Instance.new("StringValue")
+				val.Value = valuev
+				val.Name = value
+				val.Parent = tabl
+			end,
+			desc = "Creates a FAKE table"
+		},
+		["table.remove"] = {
+			function(name)
+				player:FindFirstChild(name):Destroy()
+			end,
+			desc = "Removes the FAKE table"
+		},
+		["table.freeze"] = {
+			function(name)
+				local tabl = player:FindFirstChild(name)
+				tableconn = tabl.ChildAdded:Connect(function(child)
+					child:Destroy()
+				end)
+			end,
+			desc = "Freezes the FAKE table"
+		},
+		["table.unfreeze"] = {
+			function()
+				tableconn:Disconnect()
+			end,
+			desc = "Unfreees a table"
+		},
+		["value.new"] = {
+			function(name, value, tablename)
+				local val = Instance.new("StringValue")
+				val.Value = value
+				val.Name = name
+				val.Parent = player:FindFirstChild(tablename)
+			end,
+			desc = "Creates a new value"
+		},
+		["value.remove"] = {
+			function(tablename, valname)
+				player:FindFirstChild(tablename)[valname]:Destroy()
+			end,
+			desc = "Destroys the value"
+		},
+		["nilchar"] = {
+			function()
+				char.Parent = nil
+			end,
+			desc = "Changes your character's parent to nil"
+		},
+		["unnilchar"] = {
+			function()
+				char.Parent = workspace
+			end,
+			desc = "Undoes nilchar"
+		},
+		["hlliving"] = {
+			function()
+				for _, v in pairs(workspace:GetChildren()) do
+					if v:IsA("Model") and v:FindFirstChildWhichIsA("Humanoid") then
+						for q, part in pairs(v:GetChildren()) do
+							if part:IsA("BasePart") then
+								local clone = ui.Highlight:Clone()
+								clone.Parent = part
+								for x, v in pairs(clone:GetChildren()) do
+									v.Adornee = part
+								end
+							end
+						end
+					end
+				end
+			end,
+			desc = "Highlights living"
+		},
+		["getanims"] = {
+			function()
+				for i, v in pairs(game:GetDescendants()) do
+					if v:IsA("Animation") then
+						print(v.Name.." "..v.AnimationId)
+					end
+				end
+			end,
+			desc = "Gets all animations"
+		},
+		["playanim"] = {
+			function(arg, looped)
+				local a = Instance.new("Animation")
+				a.AnimationId = arg
+				a.Parent = ui.Animations
+				local anim = animator:LoadAnimation(a)
+				if looped == "true" then
+					anim.Looped = true
+				end
+				anim:Play()
+			end,
+			desc = "Plays an animation"
+		},
+		["ping"] = {
+			function(exact)
+				if exact == "true" then
+					globalfunction.createnotif("Ping", math.floor(player:GetNetworkPing()), 5)
+				elseif exact == "false" then
+					globalfunction.createnotif("Ping", player:GetNetworkPing(), 5)
+				end
+			end,
+			desc = "Gets your ping"
+		},
+		["physfps"] = {
+			function(exact)
+				if exact == "true" then
+					globalfunction.createnotif("Ping", math.floor(workspace:GetRealPhysicsFPS()), 5)
+				elseif exact == "false" then
+					globalfunction.createnotif("Ping", workspace:GetRealPhysicsFPS(), 5)
+				end
+			end,
+			desc = "Gets physics FPS"
+		},
+		["realfps"] = {
+			function(exact)
+				if exact == "true" then
+					globalfunction.createnotif("FPS", math.floor(1 / game:GetService("RunService").RenderStepped:Wait()), 5)
+				elseif exact == "false" then
+					globalfunction.createnotif("FPS", 1 / game:GetService("RunService").RenderStepped:Wait(), 5)
+				end
+			end,
+			desc = "Gets your FPS"
 		}
 	}
-	
 	
 	uis.InputBegan:Connect(function(key, chat)
 		if not chat and key.KeyCode == Enum.KeyCode.Semicolon then
@@ -607,4 +900,4 @@ local function SNACC_fake_script()
 		end)
 	end
 end
-coroutine.wrap(SNACC_fake_script)()
+coroutine.wrap(BDCT_fake_script)()
