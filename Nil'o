@@ -1,3 +1,4 @@
+
 loaded = false
 debugging = false
 
@@ -7,6 +8,7 @@ if loaded and not debugging then
 end
 
 pcall(function() getfenv().loaded = true end)
+
 
 local nilo = Instance.new("ScreenGui")
 local CommandBox = Instance.new("TextBox")
@@ -48,6 +50,9 @@ local Frame_5 = Instance.new("Frame")
 local Top = Instance.new("SurfaceGui")
 local Frame_6 = Instance.new("Frame")
 local Animations = Instance.new("Folder")
+local Plugins = Instance.new("Folder")
+
+--Properties:
 
 nilo.Name = "nil'o"
 nilo.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -283,25 +288,31 @@ Frame_6.ZIndex = 5
 Animations.Name = "Animations"
 Animations.Parent = nilo
 
+Plugins.Name = "Plugins"
+Plugins.Parent = nilo
 
-local function BDCT_fake_script()
+
+local ui = script.Parent.Parent
+local box = script.Parent
+local mainframe = ui.MainFrame
+local sounds = ui.Sounds
+local copyme = mainframe.copyme
+local uis = game:GetService("UserInputService")
+local twserv = game:GetService("TweenService")
+local info = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
+
+local players = game:GetService("Players")
+local player = players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local human = char:WaitForChild("Humanoid")
+local animator = human:FindFirstChildWhichIsA("Animator")
+local rand = math.random()
+local plugins = ui.Plugins
+
+-- Scripts:
+
+local function OPSC_fake_script() -- CommandBox.Main 
 	local script = Instance.new('LocalScript', CommandBox)
-	
-	local ui = script.Parent.Parent
-	local box = script.Parent
-	local mainframe = ui.MainFrame
-	local sounds = ui.Sounds
-	local copyme = mainframe.copyme
-	local uis = game:GetService("UserInputService")
-	local twserv = game:GetService("TweenService")
-	local info = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
-	
-	local players = game:GetService("Players")
-	local player = players.LocalPlayer
-	local char = player.Character or player.CharacterAdded:Wait()
-	local human = char:WaitForChild("Humanoid")
-	local animator = human:FindFirstChildWhichIsA("Animator")
-	local rand = math.random()
 	
 	local globalfunction = {
 		createnotif = function(plate, text, duration)
@@ -379,9 +390,24 @@ local function BDCT_fake_script()
 				sound1:Destroy()
 			end
 		end,
+		refreshvars = function()
+			players = game:GetService("Players")
+			player = players.LocalPlayer
+			char = player.Character or player.CharacterAdded:Wait()
+			human = char:WaitForChild("Humanoid")
+			animator = human:FindFirstChildWhichIsA("Animator")
+		end,
 	}
 	
-	local commands = {
+	local commands
+	
+	commands = {
+		["refreshvars"] = {
+			function()
+				globalfunction.refreshvars()
+			end,
+			desc = "Test"
+		},
 		["print"] = {
 			function(args)
 				print(args)
@@ -591,7 +617,7 @@ local function BDCT_fake_script()
 		},
 		["close"] = {
 			function()
-				game:Shutdown()
+				--game:Shutdown()
 			end,
 			desc = "Closes your client"
 		},
@@ -700,7 +726,8 @@ local function BDCT_fake_script()
 		},
 		["refresh"] = {
 			function()
-			
+				human:Destroy()
+				human = Instance.new("Humanoid", char)
 			end,
 			desc = "lol"
 		},
@@ -835,50 +862,50 @@ local function BDCT_fake_script()
 			end,
 			desc = "Gets your FPS"
 		},
-		["dex"] = {
-			function()
-				loadstring(game:HttpGetAsync("https://pastebin.com/raw/iuQPQq4M"))()
+		["fling"] = {
+			function(speed) 
+				for i, v in ipairs(char:GetChildren()) do
+					if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
+						v.CanCollide = false
+					end
+				end
+				local fling = Instance.new("BodyThrust")
+				fling.Force = Vector3.new(speed, 0, speed)
+				fling.Location = char:WaitForChild("HumanoidRootPart").Position
+				fling.Parent = char:WaitForChild("HumanoidRootPart")
 			end,
-			desc = "Loads Dark DEX"
+			desc = "Basic fling"
 		},
-		["audiologger"] = {
+		["unfling"] = {
 			function()
-				loadstring(game:HttpGet('https://pastebin.com/raw/v7Usg709', true))()
+				--broken
 			end,
-			desc = "Loads audio logger"
+			desc = "Basic unfling (broken btw)"
 		},
-		["frosthook"] = {
-			function()
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/Nootchtai/FrostHook_Spy/master/Spy.lua"))()
-			end,
-			desc = "Loads frost hook"
-		},
-		["frosthook"] = {
-			function()
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/Nootchtai/FrostHook_Spy/master/Spy.lua"))()
-			end,
-			desc = "Loads frost hook"
-		},
-		["turtlespy"] = {
-			function()
-				loadstring(game:HttpGet("https://pastebin.com/raw/BDhSQqUU", true))()
-			end,
-			desc = "Loads turtle spy"
-		},
-		["netless"] = {
-			function()
-				loadstring(game:HttpGet("https://pastebin.com/raw/Kc5Wpt9s", true))()
-			end,
-			desc = "Loads simple netless"
-		},
-		["simradius"] = {
-			function()
-				sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-				settings().Physics.AllowSleep = false
-  					if setfflag then setfflag("PlayerNoAccessRadius","False")
+		["loopcmd"] = {
+			function(n1, n2, n3, cmd)
+				for i = n1, n2, n3 do
+					local args = string.split(cmd, " ")
+					local command = commands[args[1]][1]
 				end
 			end,
-			desc = "Maxes out simradius"
+			desc = "Loops a command (Currently only works on commands with no args)"
+		},
+		["clearoutput"] = {
+			function()
+				for i = 1, 30, 1 do 
+					print("\n \n \n \n \n \n \n \n \n \n \n \n \n \n")
+				end
+			end,
+			desc = "Clears F9 output"
+		},
+		["vspeed"] = {
+			function(speed)
+				local Speed = tonumber(speed)
+				if human.SeatPart:IsA("VehicleSeat") then
+					human.Seatpart.MaxSpeed = Speed
+				end
+			end,
 		}
 	}
 	
@@ -889,18 +916,20 @@ local function BDCT_fake_script()
 	end)
 	
 	box.FocusLost:Connect(function(enter)
-		if enter then
-			local input = box.Text
-			local args = string.split(input, " ")
-			print(args)
-			local command = commands[args[1]][1]
+		pcall(function()
+			if enter then
+				local input = box.Text
+				local args = string.split(input, " ")
+				print(args)
+				local command = commands[args[1]][1]
 	
-			if command then
-				command(unpack(args, 2))
+				if command then
+					command(unpack(args, 2))
+					print(command(unpack(args, 2)))
+				end
 			end
-		end
+		end)
 	end)
-	
 	
 	box:GetPropertyChangedSignal("Text"):Connect(function()
 		local availableCMDs = globalfunction.predict(commands, box.Text)
@@ -945,4 +974,5 @@ local function BDCT_fake_script()
 		end)
 	end
 end
-coroutine.wrap(BDCT_fake_script)()
+coroutine.wrap(OPSC_fake_script)()
+print("Have a good day")
